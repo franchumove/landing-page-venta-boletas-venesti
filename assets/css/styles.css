@@ -313,42 +313,46 @@ button {
 .hero-visual-center {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 480px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   z-index: 6;
 }
 
 .hero-flame {
   position: absolute;
-  width: 78px;
-  height: auto;
-  top: 10%;
+  width: clamp(75px, 20vw, 120px);
+  height: calc(100% + 25px);
+  top: 0;
+  bottom: -25px;
   z-index: 5;
   filter: drop-shadow(0 0 10px rgba(245, 197, 66, 0.6));
   animation: flameGlowShimmer 4s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
-.hero-flame-left { left: 0; }
-.hero-flame-right { right: 0; }
+.hero-flame-left { left: -8px; }
+.hero-flame-right { right: -8px; }
 
 .hero-portrait-wrapper {
   position: relative;
   width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
+  max-width: 420px;
+  margin: 0 auto -2rem;
   z-index: 6;
 }
 
 .venesti-portrait-img {
   width: 100%;
   height: auto;
+  display: block;
   filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.7));
   margin: 0 auto;
+  mask-image: linear-gradient(to bottom, black 72%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 98%);
 }
 
 .venesti-name-text {
@@ -422,7 +426,7 @@ button {
 .hero-bottom-actions {
   width: 100%;
   max-width: 480px;
-  margin: 1.25rem auto 0;
+  margin: 0 auto;
   z-index: 10;
   display: flex;
   flex-direction: column;
