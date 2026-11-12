@@ -7,7 +7,7 @@
 
   <!-- SEO Primario -->
   <title>VENESTI en VIBRA Discoteca · 21 de noviembre · Bogotá</title>
-  <meta name="description" content="VENESTI en vivo en VIBRA Discoteca (Bogotá, Zona T). Sábado 21 de noviembre de 2026. Apertura 8:00 p. m. Boletas Diamante $ 250.000, Oro $ 180.000, Plata $ 120.000.">
+  <meta name="description" content="VENESTI en vivo en VIBRA Discoteca (Bogotá, Zona T). Sábado 21 de noviembre de 2026. Apertura 8:00 p. m. Reserva tus boletas y mesas VIP oficiales.">
   <meta name="keywords" content="Venesti, Vibra Discoteca, Concierto Bogota, Zona T, Venta Boletas, Mesas VIP, Reggaeton Bogota, Rumba Bogota">
   <meta name="author" content="VIBRA Discoteca">
   <meta name="theme-color" content="#3A0806">
@@ -15,8 +15,8 @@
   <!-- Open Graph / Redes Sociales (Facebook, Instagram, WhatsApp) -->
   <meta property="og:type" content="event">
   <meta property="og:title" content="VENESTI en VIBRA Discoteca · 21 de noviembre · Bogotá">
-  <meta property="og:description" content="Noche latina, glamour retro y todos los éxitos de VENESTI en vivo. Sábado 21 de noviembre de 2026 en VIBRA Discoteca (Zona T, Bogotá). Diamante $ 250.000 · Oro $ 180.000 · Plata $ 120.000.">
-  <meta property="og:image" content="assets/images/venesti_vibra_feed_2.jpg">
+  <meta property="og:description" content="Noche latina, glamour retro y todos los éxitos de VENESTI en vivo. Sábado 21 de noviembre de 2026 en VIBRA Discoteca (Zona T, Bogotá). Reserva aquí tus entradas.">
+  <meta property="og:image" content="assets/images/venesti_flyer_feed.jpg">
   <meta property="og:image:width" content="1080">
   <meta property="og:image:height" content="1350">
   <meta property="og:locale" content="es_CO">
@@ -24,8 +24,8 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="VENESTI en VIBRA Discoteca · 21 de noviembre · Bogotá">
-  <meta name="twitter:description" content="Noche latina y glamour retro con VENESTI en vivo en VIBRA Discoteca (Zona T, Bogotá). Diamante $ 250.000 · Oro $ 180.000 · Plata $ 120.000.">
-  <meta name="twitter:image" content="assets/images/venesti_vibra_feed_2.jpg">
+  <meta name="twitter:description" content="Noche latina y glamour retro con VENESTI en vivo en VIBRA Discoteca (Zona T, Bogotá). Reserva tus boletas y mesas VIP.">
+  <meta name="twitter:image" content="assets/images/venesti_flyer_feed.jpg">
 
   <!-- Preconexión de Fuentes Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,39 +58,19 @@
       }
     },
     "image": [
-      "assets/images/venesti_vibra_feed_2.jpg"
+      "assets/images/venesti_flyer_feed.jpg"
     ],
-    "description": "Presentación en vivo de VENESTI en VIBRA Discoteca en Bogotá. Diamante $ 250.000, Oro $ 180.000, Plata $ 120.000.",
+    "description": "Presentación en vivo de VENESTI en VIBRA Discoteca en Bogotá. Noche latina, glamour retro y los mejores éxitos urbanos.",
     "performer": {
       "@type": "MusicGroup",
       "name": "VENESTI"
     },
-    "offers": [
-      {
-        "@type": "Offer",
-        "name": "Zona Diamante",
-        "price": "250000",
-        "priceCurrency": "COP",
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-11-01"
-      },
-      {
-        "@type": "Offer",
-        "name": "Zona Oro",
-        "price": "180000",
-        "priceCurrency": "COP",
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-11-01"
-      },
-      {
-        "@type": "Offer",
-        "name": "Zona Plata",
-        "price": "120000",
-        "priceCurrency": "COP",
-        "availability": "https://schema.org/InStock",
-        "validFrom": "2026-11-01"
-      }
-    ]
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "COP",
+      "availability": "https://schema.org/PreOrder",
+      "validFrom": "2026-11-01"
+    }
   }
   </script>
 </head>
@@ -167,15 +147,11 @@
         </div>
       </div>
 
-      <!-- CTA Principal idéntico al flyer con borde doble de neón -->
-      <a href="#reserva" class="btn-flyer-cta" aria-label="Comprar tus entradas y reservar mesa">
-        <span class="cta-ticket-icon">🎟️</span>
-        <span class="cta-divider-pipe"></span>
-        <div class="cta-text-group">
-          <span class="cta-subtext">COMPRA TUS</span>
-          <span class="cta-maintext">ENTRADAS</span>
-        </div>
-        <span class="cta-cursor-icon">👉</span>
+      <!-- CTA Principal tipo pastilla con borde dorado y glow -->
+      <a href="#reserva" class="btn btn-primary-hero" aria-label="Comprar tus entradas y reservar mesa">
+        <span class="btn-icon">🎟️</span>
+        <span class="btn-text">COMPRA TUS ENTRADAS</span>
+        <span class="btn-cursor-icon">👉</span>
       </a>
     </div>
   </header>
@@ -267,20 +243,36 @@
   </div>
 
   <!-- ============================================================================
-       3. SECCIÓN DISTRIBUCIÓN DE TARIMA (INTERACTIVA - EXACTA A VENESTI_VIBRA_FEED_2)
+       3. SECCIÓN DISTRIBUCIÓN DE TARIMA (INTERACTIVA)
+       Acomodación exacta de tarima, palcos y mesas (según venesti_vibra_feed_2)
        ============================================================================ -->
   <section class="stage-section" id="distribucion">
     <div class="wide-container">
-      <!-- Tarjeta con doble borde neón idéntica al flyer -->
-      <div class="retro-neon-card stage-map-card">
-        <h2 class="card-title-header">DISTRIBUCIÓN DE TARIMA</h2>
+      <div class="retro-panel">
+        <h2 class="section-title">DISTRIBUCIÓN DE TARIMA</h2>
         <p class="stage-instructions">
-          <span>👆</span> Toca cualquier mesa o zona para ver información y reservar de inmediato:
+          <span>👆</span> Toca cualquier mesa o zona en el mapa para ver precios, capacidad y reservar directamente:
         </p>
 
-        <!-- Mapa SVG interactivo fiel a la disposición del flyer venesti_vibra_feed_2 -->
-        <div class="stage-map-svg-container">
-          <svg class="stage-flyer-svg" viewBox="0 0 680 290" xmlns="http://www.w3.org/2000/svg" role="region" aria-label="Distribución exacta de mesas y tarima de Vibra Discoteca">
+        <!-- Leyenda de Zonas -->
+        <div class="stage-legend">
+          <div class="legend-badge">
+            <span class="legend-dot dot-diamante"></span>
+            <span>DIAMANTE (8 Mesas VIP)</span>
+          </div>
+          <div class="legend-badge">
+            <span class="legend-dot dot-oro"></span>
+            <span>ORO (11 Mesas)</span>
+          </div>
+          <div class="legend-badge">
+            <span class="legend-dot dot-plata"></span>
+            <span>PLATA (Alas Laterales)</span>
+          </div>
+        </div>
+
+        <!-- Mapa SVG interactivo fiel a la acomodación de venesti_vibra_feed_2 -->
+        <div class="stage-map-wrapper">
+          <svg class="stage-map-svg" viewBox="0 0 680 290" xmlns="http://www.w3.org/2000/svg" role="region" aria-label="Distribución exacta de mesas y tarima de Vibra Discoteca">
             <!-- Fondo interno oscuro -->
             <rect x="0" y="0" width="680" height="290" rx="16" fill="#120202" stroke="none"/>
 
@@ -299,8 +291,8 @@
 
             <!-- TARIMA (Centro superior en rojo con borde brillante) -->
             <g>
-              <rect x="230" y="20" width="220" height="52" rx="12" class="svg-tarima-flyer"/>
-              <text x="340" y="53" class="svg-tarima-title">TARIMA</text>
+              <rect x="230" y="20" width="220" height="52" rx="12" class="svg-tarima"/>
+              <text x="340" y="53" class="svg-tarima-text">TARIMA</text>
             </g>
 
             <!-- ORO Superior Derecho (Etiqueta + 3 Mesas en fila) -->
@@ -379,14 +371,14 @@
           </svg>
         </div>
 
-        <!-- Panel Inferior de Detalles (Se actualiza al tocar cualquier elemento del mapa) -->
-        <div class="stage-detail-panel" id="map-detail-card" style="margin-top: 1.5rem;">
+        <!-- Panel Inferior de Detalles (Se actualiza al tocar el mapa) -->
+        <div class="stage-detail-panel" id="map-detail-card">
           <div class="detail-header-row">
             <span class="detail-zone-pill" id="map-detail-zone">DIAMANTE</span>
             <span class="detail-status status-available" id="map-detail-status">● DISPONIBLE PARA RESERVA</span>
           </div>
 
-          <h3 class="detail-table-name" id="map-detail-title">Mesa Diamante D-01</h3>
+          <h3 class="detail-table-name" id="map-detail-title">Mesa D-01 · Zona Diamante</h3>
 
           <div class="detail-meta-row">
             <div class="detail-price-box" id="map-detail-price">
@@ -403,14 +395,9 @@
             <li>✦ Acceso VIP prioritario sin filas</li>
           </ul>
 
-          <button type="button" class="btn-flyer-cta" id="map-detail-btn" style="width: 100%;">
-            <span class="cta-ticket-icon">✨</span>
-            <span class="cta-divider-pipe"></span>
-            <div class="cta-text-group">
-              <span class="cta-subtext">RESERVAR</span>
-              <span class="cta-maintext">ESTA LOCALIDAD</span>
-            </div>
-            <span class="cta-cursor-icon">👉</span>
+          <button type="button" class="btn btn-primary-hero" id="map-detail-btn" style="width: 100%;">
+            <span class="btn-icon">✨</span>
+            <span class="btn-text">Reservar esta mesa</span>
           </button>
         </div>
       </div>
@@ -423,44 +410,15 @@
   </div>
 
   <!-- ============================================================================
-       4. SECCIÓN ZONAS Y PRECIOS (OFICIAL SEGÚN FLYER 2)
+       4. SECCIÓN ZONAS Y PRECIOS
        ============================================================================ -->
   <section class="pricing-section" id="precios">
     <div class="wide-container">
       <h2 class="section-title">ZONAS Y PRECIOS</h2>
-      <p class="section-subtitle">LOCALIDADES OFICIALES · SELECCIONA TU ZONA PARA RESERVAR</p>
+      <p class="section-subtitle">TABLA DE LOCALIDADES · CONFIGURACIÓN FÁCIL Y EXCLUSIVIDAD GARANTIZADA</p>
 
-      <!-- Tabla Idéntica al Flyer venesti_vibra_feed_2 -->
-      <div class="retro-neon-card official-price-table">
-        <div class="table-header-row">
-          <span>ZONA</span>
-          <span class="pill-divider-char">|</span>
-          <span>VALOR</span>
-        </div>
-
-        <div class="table-pills-list">
-          <div class="price-pill-row pill-diamante" data-zone="diamante" role="button" tabindex="0">
-            <span>DIAMANTE</span>
-            <span class="pill-divider-char">|</span>
-            <span class="pill-price-val">$ 250.000</span>
-          </div>
-
-          <div class="price-pill-row pill-oro" data-zone="oro" role="button" tabindex="0">
-            <span>ORO</span>
-            <span class="pill-divider-char">|</span>
-            <span class="pill-price-val">$ 180.000</span>
-          </div>
-
-          <div class="price-pill-row pill-plata" data-zone="plata" role="button" tabindex="0">
-            <span>PLATA</span>
-            <span class="pill-divider-char">|</span>
-            <span class="pill-price-val">$ 120.000</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tarjetas Detalladas con Beneficios por Localidad -->
-      <div class="pricing-details-grid" id="pricing-cards-container">
+      <!-- Contenedor dinámico alimentado por EVENT_CONFIG.zones -->
+      <div class="pricing-grid" id="pricing-cards-container">
         <!-- Renderizado dinámico desde main.js y config.js -->
       </div>
     </div>
@@ -476,14 +434,14 @@
        ============================================================================ -->
   <section class="booking-section" id="reserva">
     <div class="container">
-      <div class="retro-neon-card booking-card">
+      <div class="retro-panel booking-card">
         <h2 class="section-title" style="font-size: 1.6rem; margin-bottom: 0.5rem;">RESERVA TU EXPERIENCIA</h2>
         <p class="section-subtitle" style="margin-bottom: 1.5rem;">
           Diligencia tus datos para conectar directamente con el equipo de reservas oficial de VIBRA vía WhatsApp:
         </p>
 
         <form id="reservation-form">
-          <!-- Selección de Línea de WhatsApp -->
+          <!-- Selección de Línea de WhatsApp (Dos números oficiales) -->
           <div class="form-group">
             <label class="form-label">SELECCIONA LA LÍNEA DE WHATSAPP:</label>
             <div class="whatsapp-line-selector">
@@ -518,7 +476,7 @@
           </div>
 
           <div class="form-row">
-            <!-- Zona de Preferencia con Precios Oficiales -->
+            <!-- Zona de Preferencia -->
             <div class="form-group">
               <label for="form-zone" class="form-label">ZONA DE PREFERENCIA *</label>
               <select id="form-zone" class="form-control" required>
@@ -534,8 +492,8 @@
               <select id="form-guests" class="form-control" required>
                 <option value="1 persona">1 persona (Plata)</option>
                 <option value="2 a 4 personas">2 a 4 personas</option>
-                <option value="5 a 8 personas">5 a 8 personas (Mesa Oro)</option>
-                <option value="10 personas (Mesa completa)" selected>10 personas (Mesa Diamante / Oro)</option>
+                <option value="5 a 8 personas">5 a 8 personas (Mesa)</option>
+                <option value="10 personas (Mesa completa)" selected>10 personas (Mesa completa)</option>
                 <option value="Más de 10 personas">Más de 10 personas (Grupo corporativo)</option>
               </select>
             </div>
@@ -545,7 +503,7 @@
           <div class="form-group">
             <label for="form-table" class="form-label">MESA ESPECÍFICA (OPCIONAL)</label>
             <select id="form-table" class="form-control">
-              <!-- Opciones sincronizadas desde config.js -->
+              <!-- Opciones cargadas dinámicamente desde config.js -->
             </select>
           </div>
 
@@ -555,19 +513,14 @@
             <textarea id="form-notes" class="form-control" rows="2" placeholder="Celebración de cumpleaños, licores preferidos, etc."></textarea>
           </div>
 
-          <!-- Botón de Envío Oficial -->
-          <button type="submit" class="btn-flyer-cta" style="width: 100%; margin-top: 0.5rem;">
-            <span class="cta-ticket-icon">📲</span>
-            <span class="cta-divider-pipe"></span>
-            <div class="cta-text-group">
-              <span class="cta-subtext">ENVIAR RESERVA</span>
-              <span class="cta-maintext">POR WHATSAPP</span>
-            </div>
-            <span class="cta-cursor-icon">👉</span>
+          <!-- Botón de Envío: Abre WhatsApp con mensaje prellenado -->
+          <button type="submit" class="btn btn-primary-hero" style="width: 100%; margin-top: 0.5rem;">
+            <span class="btn-icon">📲</span>
+            <span class="btn-text">RESERVAR POR WHATSAPP</span>
           </button>
         </form>
 
-        <!-- Información de Pasarela de Pagos -->
+        <!-- Información de Pasarela de Pagos (Desactivada por defecto) -->
         <div id="gateway-notice"></div>
       </div>
     </div>
@@ -605,16 +558,16 @@
         </iframe>
       </div>
 
-      <!-- Botones Cómo Llegar -->
+      <!-- Botones Cómo Llegar (Google Maps & Waze) -->
       <div class="location-buttons-row">
-        <a href="https://www.google.com/maps/search/?api=1&query=Vibra+Discoteca+Cra+13+%23+83-47+piso+5+Bogota" target="_blank" rel="noopener" class="btn-secondary">
-          <span>🗺️</span>
-          <span>Abrir en Google Maps</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=Vibra+Discoteca+Cra+13+%23+83-47+piso+5+Bogota" target="_blank" rel="noopener" class="btn btn-secondary">
+          <span class="btn-icon">🗺️</span>
+          <span class="btn-text">Abrir en Google Maps</span>
         </a>
 
-        <a href="https://waze.com/ul?q=Cra%2013%20%23%2083-47%20piso%205%20Bogota" target="_blank" rel="noopener" class="btn-secondary">
-          <span>🚗</span>
-          <span>Abrir en Waze</span>
+        <a href="https://waze.com/ul?q=Cra%2013%20%23%2083-47%20piso%205%20Bogota" target="_blank" rel="noopener" class="btn btn-secondary">
+          <span class="btn-icon">🚗</span>
+          <span class="btn-text">Abrir en Waze</span>
         </a>
       </div>
     </div>
@@ -633,6 +586,7 @@
       <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
       <p class="section-subtitle">TODO LO QUE DEBES SABER ANTES DE ASISTIR</p>
 
+      <!-- Acordeón interactivo alimentado por config.js -->
       <div class="faq-list" id="faq-accordion">
         <!-- Renderizado dinámico accesible -->
       </div>

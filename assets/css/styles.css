@@ -1,44 +1,43 @@
 /* ==============================================================================
    VENESTI EN VIBRA DISCOTECA - HOJA DE ESTILOS PRINCIPAL
    Identidad visual: Noche latina, glamour retro, dorado sobre rojo profundo
-   Actualizado según flyer oficial: venesti_vibra_feed_2
+   Optimizado mobile-first para tráfico de Instagram (90%)
    ============================================================================== */
 
 /* --- Variables y Paleta Oficial --- */
 :root {
   /* Fondo y Viñeta */
   --bg-center: #A3201A;
-  --bg-mid: #68120E;
+  --bg-mid: #6B1310;
   --bg-edge: #3A0806;
-  --bg-deep: #1A0503;
+  --bg-deep: #1E0403;
 
   /* Dorados y Brillos */
   --gold-primary: #E3A92B;
   --gold-shine: #F5C542;
   --gold-muted: #B8851B;
-  --neon-orange: #F58C1E;
-  --orange-glow: rgba(245, 140, 30, 0.55);
-  --orange-glow-intense: rgba(245, 140, 30, 0.85);
+  --orange-glow: rgba(245, 140, 30, 0.45);
+  --orange-glow-intense: rgba(245, 140, 30, 0.75);
 
   /* Venesti Brand Gradient & Shadow */
   --venesti-grad-top: #F7C531;
   --venesti-grad-bottom: #F08A1C;
   --venesti-shadow-blue: #1E46C8;
 
-  /* Zonas Oficiales según venesti_vibra_feed_2 */
-  --zone-diamante: #D91E74;
-  --zone-diamante-dark: #8F114B;
-  --zone-oro: #E8A21C;
-  --zone-oro-dark: #9E6A08;
-  --zone-plata: #14539E;
-  --zone-plata-dark: #0A3263;
+  /* Zonas Oficiales */
+  --zone-diamante: #E2307C;
+  --zone-diamante-dark: #A01B53;
+  --zone-oro: #F2B01E;
+  --zone-oro-dark: #B57D0D;
+  --zone-plata: #1C4E9C;
+  --zone-plata-dark: #0E2957;
 
   /* Textos y Paneles */
   --text-primary: #F6F4EE; /* Blanco hueso */
   --text-muted: #D1CBBF;
   --text-dark: #120302;
-  --panel-bg: rgba(22, 4, 3, 0.9); /* #160403 al 90% */
-  --panel-border: #F58C1E;
+  --panel-bg: rgba(26, 5, 3, 0.88); /* #1A0503 al 88% */
+  --panel-border: #E3A92B;
 
   /* Tipografías */
   --font-artist: 'Playfair Display', serif;
@@ -48,7 +47,7 @@
 
   /* Medidas y Transiciones */
   --radius-sm: 8px;
-  --radius-md: 16px;
+  --radius-md: 14px;
   --radius-lg: 24px;
   --radius-pill: 9999px;
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -72,7 +71,7 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg-edge);
   background-image: 
-    radial-gradient(circle at 50% 20%, var(--bg-center) 0%, var(--bg-mid) 40%, var(--bg-edge) 80%, var(--bg-deep) 100%);
+    radial-gradient(circle at 50% 25%, var(--bg-center) 0%, var(--bg-mid) 45%, var(--bg-edge) 85%, var(--bg-deep) 100%);
   background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
@@ -100,7 +99,7 @@ body {
 h1, h2, h3, h4 {
   color: var(--gold-shine);
   font-family: var(--font-labels);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -158,39 +157,29 @@ button {
   filter: drop-shadow(0 0 8px rgba(245, 197, 66, 0.4));
 }
 
-/* --- TARJETAS CON DOBLE BORDE DE NEÓN (Idénticas a venesti_vibra_feed_2) --- */
-.retro-neon-card {
-  background: var(--panel-bg);
+/* --- TARJETAS Y PANELES TRASLÚCIDOS --- */
+.retro-panel {
+  background-color: var(--panel-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 2px solid var(--neon-orange);
+  border: 1.5px solid var(--panel-border);
   border-radius: var(--radius-lg);
-  box-shadow: 0 0 26px var(--orange-glow), inset 0 0 16px rgba(245, 140, 30, 0.15);
+  box-shadow: 0 0 24px var(--orange-glow), inset 0 0 15px rgba(227, 169, 43, 0.1);
   padding: 1.5rem;
   position: relative;
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
 
-.retro-neon-card::before {
+.retro-panel::before {
   content: '';
   position: absolute;
-  top: 4px;
-  left: 4px;
-  right: 4px;
-  bottom: 4px;
-  border: 1px solid rgba(245, 197, 66, 0.45);
-  border-radius: calc(var(--radius-lg) - 4px);
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 1px solid rgba(245, 197, 66, 0.25);
+  border-radius: calc(var(--radius-lg) - 3px);
   pointer-events: none;
-}
-
-.card-title-header {
-  font-family: var(--font-labels);
-  font-size: clamp(1rem, 3.8vw, 1.35rem);
-  letter-spacing: 0.14em;
-  color: #FFFFFF;
-  text-align: center;
-  margin-bottom: 1.25rem;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 /* Esquinas Doradas Art Nouveau */
@@ -208,91 +197,46 @@ button {
 .corner-bottom-left { bottom: 10px; left: 10px; transform: scaleY(-1); }
 .corner-bottom-right { bottom: 10px; right: 10px; transform: scale(-1, -1); }
 
-/* --- BOTÓN COMPRA TUS ENTRADAS CON NEÓN (Idéntico a venesti_vibra_feed_2) --- */
-.btn-flyer-cta {
+/* --- BOTONES Y CTAS --- */
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.85rem;
-  background: rgba(22, 4, 3, 0.95);
-  border: 2px solid var(--neon-orange);
-  border-radius: var(--radius-pill);
+  gap: 0.65rem;
+  font-family: var(--font-labels);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  min-height: 48px;
   padding: 0.85rem 1.6rem;
-  box-shadow: 0 0 28px var(--orange-glow-intense), inset 0 0 12px rgba(245, 140, 30, 0.25);
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--gold-shine);
   position: relative;
+  transition: all var(--transition-fast);
   text-decoration: none;
-  min-height: 58px;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Botón Pastilla Hero Principal con Glow */
+.btn-primary-hero {
+  background: linear-gradient(135deg, #F7C531 0%, #F08A1C 50%, #D46F0E 100%);
+  color: var(--text-dark);
+  font-weight: 900;
+  box-shadow: 0 0 25px var(--orange-glow-intense), 0 4px 15px rgba(0, 0, 0, 0.4);
+  border-color: #FFE68C;
   animation: breathingPulse 2.8s infinite ease-in-out;
 }
 
-.btn-flyer-cta::before {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border: 1px solid rgba(245, 197, 66, 0.5);
-  border-radius: var(--radius-pill);
-  pointer-events: none;
-}
-
-.btn-flyer-cta:hover, .btn-flyer-cta:focus-visible {
+.btn-primary-hero:hover, .btn-primary-hero:focus-visible {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 0 38px rgba(245, 140, 30, 0.95), 0 6px 20px rgba(0, 0, 0, 0.5);
-}
-
-.cta-ticket-icon {
-  font-size: 1.4rem;
-  line-height: 1;
-  color: #FFFFFF;
-}
-
-.cta-divider-pipe {
-  width: 1.5px;
-  height: 24px;
-  background: rgba(245, 197, 66, 0.6);
-}
-
-.cta-text-group {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  line-height: 1.1;
-}
-
-.cta-subtext {
-  font-family: var(--font-labels);
-  font-size: 0.75rem;
-  color: #FFFFFF;
-  letter-spacing: 0.12em;
-}
-
-.cta-maintext {
-  font-family: var(--font-labels);
-  font-size: 1.1rem;
-  color: var(--gold-shine);
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 8px rgba(245, 197, 66, 0.5);
-}
-
-.cta-cursor-icon {
-  font-size: 1.3rem;
-  color: #FFFFFF;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
+  box-shadow: 0 0 35px rgba(245, 140, 30, 0.95), 0 6px 20px rgba(0, 0, 0, 0.5);
+  color: #000;
 }
 
 .btn-secondary {
-  background: rgba(22, 4, 3, 0.9);
+  background: rgba(26, 5, 3, 0.9);
   color: var(--gold-shine);
   border: 1.5px solid var(--gold-primary);
   box-shadow: 0 0 16px rgba(227, 169, 43, 0.25);
-  border-radius: var(--radius-pill);
-  padding: 0.75rem 1.4rem;
-  font-family: var(--font-labels);
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .btn-secondary:hover {
@@ -431,7 +375,7 @@ button {
   padding: 0.35rem 1.1rem;
   border: 1.8px solid var(--gold-shine);
   border-radius: var(--radius-pill);
-  background: rgba(22, 4, 3, 0.85);
+  background: rgba(26, 5, 3, 0.85);
   box-shadow: 0 0 15px rgba(245, 197, 66, 0.4);
   position: relative;
 }
@@ -475,7 +419,7 @@ button {
 
 .countdown-box {
   width: 100%;
-  background: rgba(22, 4, 3, 0.8);
+  background: rgba(26, 5, 3, 0.8);
   backdrop-filter: blur(10px);
   border: 1.2px solid rgba(227, 169, 43, 0.4);
   border-radius: var(--radius-md);
@@ -524,7 +468,7 @@ button {
    2. SECCIÓN EL SHOW
    ============================================================================== */
 .show-section {
-  padding: 3rem 0 2rem;
+  padding: 3.5rem 0 2rem;
   position: relative;
 }
 
@@ -552,7 +496,7 @@ button {
   padding: 1.25rem;
   border-left: 3px solid var(--gold-shine);
   border-right: 3px solid var(--gold-shine);
-  background: rgba(22, 4, 3, 0.5);
+  background: rgba(26, 5, 3, 0.5);
   border-radius: var(--radius-sm);
 }
 
@@ -632,7 +576,7 @@ button {
 }
 
 .hit-item {
-  background: rgba(22, 4, 3, 0.6);
+  background: rgba(26, 5, 3, 0.6);
   border: 1px solid rgba(227, 169, 43, 0.25);
   border-radius: var(--radius-sm);
   padding: 0.75rem;
@@ -652,7 +596,8 @@ button {
 }
 
 /* ==============================================================================
-   3. DISTRIBUCIÓN DE TARIMA (INTERACTIVA - EXACTA AL FLYER)
+   3. DISTRIBUCIÓN DE TARIMA (INTERACTIVA)
+   Acomodación exacta de tarima, palcos y mesas
    ============================================================================== */
 .stage-section {
   padding: 2.5rem 0;
@@ -670,33 +615,66 @@ button {
   gap: 0.4rem;
 }
 
-.stage-map-card {
+.stage-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin-bottom: 1.5rem;
 }
 
-.stage-map-svg-container {
-  width: 100%;
-  margin: 0 auto;
+.legend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(26, 5, 3, 0.7);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.stage-flyer-svg {
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-diamante { background-color: var(--zone-diamante); box-shadow: 0 0 6px var(--zone-diamante); }
+.dot-oro { background-color: var(--zone-oro); box-shadow: 0 0 6px var(--zone-oro); }
+.dot-plata { background-color: var(--zone-plata); box-shadow: 0 0 6px var(--zone-plata); }
+
+.stage-map-wrapper {
+  background: rgba(14, 2, 2, 0.95);
+  border: 1px solid rgba(227, 169, 43, 0.35);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.stage-map-svg {
   width: 100%;
   height: auto;
   max-height: 480px;
   display: block;
 }
 
-/* Estilos SVG de Distribución de Tarima */
-.svg-tarima-flyer {
+/* Elementos SVG de Tarima */
+.svg-tarima {
   fill: #68120E;
   stroke: #E53935;
   stroke-width: 2.5;
   filter: drop-shadow(0 0 10px rgba(229, 57, 53, 0.6));
 }
 
-.svg-tarima-title {
+.svg-tarima-text {
   font-family: var(--font-labels);
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 900;
   fill: #FFFFFF;
   letter-spacing: 0.16em;
@@ -711,35 +689,32 @@ button {
   text-anchor: middle;
 }
 
-.svg-tag-oro { fill: #E8A21C; text-shadow: 0 0 6px rgba(232, 162, 28, 0.6); }
+.svg-tag-oro { fill: #F2B01E; text-shadow: 0 0 6px rgba(242, 176, 30, 0.6); }
 .svg-tag-diamante { fill: #FFFFFF; text-shadow: 0 0 6px rgba(255, 255, 255, 0.6); }
 
 /* Mesas Interactivas */
-.table-oro-rect {
-  fill: #E8A21C;
-  stroke: #FFE58A;
-  stroke-width: 1.5;
+.interactive-node {
   cursor: pointer;
   outline: none;
   transition: transform var(--transition-fast), filter var(--transition-fast), stroke-width var(--transition-fast);
+}
+
+.table-oro-rect {
+  fill: var(--zone-oro);
+  stroke: #FFE58A;
+  stroke-width: 1.5;
 }
 
 .table-diamante-rect {
-  fill: #D91E74;
+  fill: var(--zone-diamante);
   stroke: #FFA4CC;
   stroke-width: 1.5;
-  cursor: pointer;
-  outline: none;
-  transition: transform var(--transition-fast), filter var(--transition-fast), stroke-width var(--transition-fast);
 }
 
 .zone-plata-rect {
-  fill: #14539E;
+  fill: var(--zone-plata);
   stroke: #7EB1FF;
   stroke-width: 2;
-  cursor: pointer;
-  outline: none;
-  transition: transform var(--transition-fast), filter var(--transition-fast), stroke-width var(--transition-fast);
 }
 
 .svg-plata-title {
@@ -752,7 +727,6 @@ button {
   pointer-events: none;
 }
 
-/* Efectos Hover / Focus / Active */
 .interactive-node:hover rect,
 .interactive-node:focus-visible rect {
   filter: drop-shadow(0 0 10px #FFFFFF);
@@ -766,7 +740,6 @@ button {
   filter: drop-shadow(0 0 16px #FFFFFF) brightness(1.25);
 }
 
-/* Estado Agotado */
 .interactive-node.is-sold-out rect {
   fill: #3D3D3D !important;
   stroke: #666666 !important;
@@ -827,7 +800,13 @@ button {
 
 .detail-price-box .price-val {
   font-family: var(--font-labels);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+  color: var(--gold-shine);
+}
+
+.detail-price-box .price-tbd {
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--gold-shine);
 }
 
@@ -847,92 +826,21 @@ button {
 }
 
 /* ==============================================================================
-   4. TABLA DE ZONAS Y PRECIOS (OFICIAL SEGÚN FLYER 2)
+   4. ZONAS Y PRECIOS
    ============================================================================== */
 .pricing-section {
-  padding: 2.5rem 0;
+  padding: 3rem 0;
   position: relative;
 }
 
-/* Tabla de Precios Idéntica al Flyer */
-.official-price-table {
-  width: 100%;
-  max-width: 680px;
-  margin: 0 auto 2.5rem;
-}
-
-.table-header-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 2rem 0.85rem;
-  font-family: var(--font-labels);
-  font-size: clamp(0.85rem, 3vw, 1.05rem);
-  letter-spacing: 0.15em;
-  color: #FFFFFF;
-}
-
-.table-pills-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-}
-
-.price-pill-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.85rem 1.6rem;
-  border-radius: var(--radius-pill);
-  color: #FFFFFF;
-  font-family: var(--font-labels);
-  font-size: clamp(0.95rem, 3.4vw, 1.25rem);
-  letter-spacing: 0.06em;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.price-pill-row:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.3);
-}
-
-.pill-diamante {
-  background: linear-gradient(90deg, #D91E74 0%, #A81358 100%);
-  box-shadow: 0 0 20px rgba(217, 30, 116, 0.45);
-}
-
-.pill-oro {
-  background: linear-gradient(90deg, #E8A21C 0%, #BD7C0A 100%);
-  box-shadow: 0 0 20px rgba(232, 162, 28, 0.45);
-}
-
-.pill-plata {
-  background: linear-gradient(90deg, #14539E 0%, #0B356A 100%);
-  box-shadow: 0 0 20px rgba(20, 83, 158, 0.45);
-}
-
-.pill-price-val {
-  font-style: italic;
-  font-weight: 900;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-}
-
-.pill-divider-char {
-  color: rgba(255, 255, 255, 0.6);
-  font-weight: 400;
-}
-
-/* Tarjetas Detalladas de Localidades */
-.pricing-details-grid {
+.pricing-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
 }
 
 @media (min-width: 640px) {
-  .pricing-details-grid {
+  .pricing-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -979,17 +887,46 @@ button {
   letter-spacing: 0.1em;
 }
 
+.price-box {
+  margin-bottom: 1rem;
+}
+
 .pricing-amount {
   font-family: var(--font-labels);
   font-size: 1.6rem;
   color: var(--gold-shine);
   line-height: 1.1;
-  margin-bottom: 0.6rem;
 }
 
 .pricing-amount small {
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+.pricing-amount-tbd {
+  font-family: var(--font-labels);
+  font-size: 1.45rem;
+  color: var(--gold-shine);
+  letter-spacing: 0.05em;
+}
+
+.pricing-tbd-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #E3A92B 0%,
+    #FFF1BF 50%,
+    #E3A92B 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 3s infinite linear;
 }
 
 .zone-capacity-text {
@@ -1023,7 +960,7 @@ button {
 
 .btn-zone-action {
   width: 100%;
-  background: rgba(22, 4, 3, 0.95);
+  background: rgba(26, 5, 3, 0.95);
   color: var(--gold-shine);
   font-size: 0.8rem;
   border: 1.5px solid;
@@ -1034,6 +971,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  text-decoration: none;
 }
 
 .btn-zone-action:hover {
@@ -1323,7 +1261,7 @@ button {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.1rem;
-  background: rgba(22, 4, 3, 0.7);
+  background: rgba(26, 5, 3, 0.7);
   border: 1px solid rgba(227, 169, 43, 0.4);
   border-radius: var(--radius-pill);
   font-size: 0.8rem;
@@ -1401,7 +1339,7 @@ button {
   }
   50% {
     transform: scale(1.03);
-    box-shadow: 0 0 34px var(--orange-glow-intense);
+    box-shadow: 0 0 32px var(--orange-glow-intense);
   }
 }
 
@@ -1413,6 +1351,15 @@ button {
   100% {
     opacity: 1;
     filter: drop-shadow(0 0 18px rgba(245, 197, 66, 0.95)) brightness(1.15);
+  }
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 

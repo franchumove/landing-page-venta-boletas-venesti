@@ -1,7 +1,6 @@
 /**
  * ==============================================================================
  * MAIN LOGIC: VENESTI EN VIBRA DISCOTECA
- * Actualizado según especificaciones de venesti_vibra_feed_2
  * ==============================================================================
  */
 
@@ -19,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFaqAccordion(config);
   initFloatingWhatsApp(config);
   initSmoothScroll();
+  initIntersectionAnimations();
 });
 
 /**
@@ -70,7 +70,7 @@ function initCountdown(targetDateISO) {
 
 /**
  * ------------------------------------------------------------------------------
- * 2. MAPA INTERACTIVO DE TARIMA (EXACTO AL FLYER 2)
+ * 2. MAPA INTERACTIVO DE TARIMA Y MESAS
  * ------------------------------------------------------------------------------
  */
 function initStageMap(config) {
@@ -126,7 +126,7 @@ function initStageMap(config) {
     // Actualizar datos del panel informativo
     if (detailZoneBadge) {
       detailZoneBadge.textContent = zoneInfo ? zoneInfo.name : "ZONA VIP";
-      detailZoneBadge.style.backgroundColor = zoneInfo ? zoneInfo.color : "#D91E74";
+      detailZoneBadge.style.backgroundColor = zoneInfo ? zoneInfo.color : "#E2307C";
     }
 
     if (detailTitle) {
@@ -143,7 +143,7 @@ function initStageMap(config) {
       if (zoneInfo && zoneInfo.price) {
         detailPrice.innerHTML = `<span class="price-val">$ ${Number(zoneInfo.price).toLocaleString("es-CO")} COP</span>`;
       } else {
-        detailPrice.innerHTML = `<span class="price-val">[POR CONFIRMAR]</span>`;
+        detailPrice.innerHTML = `<span class="price-tbd shimmer-text">Muy pronto [POR CONFIRMAR]</span>`;
       }
     }
 
@@ -163,7 +163,7 @@ function initStageMap(config) {
         detailStatus.textContent = "● MESA AGOTADA";
         if (detailBtn) {
           detailBtn.classList.add("disabled");
-          detailBtn.textContent = "Mesa agotada (Elegir otra)";
+          detailBtn.textContent = "Mesa no disponible";
           detailBtn.onclick = null;
         }
       } else {
@@ -179,10 +179,10 @@ function initStageMap(config) {
       }
     }
 
-    // Efecto de glow en el panel
     if (detailPanel) {
-      detailPanel.style.borderColor = zoneInfo ? zoneInfo.color : "#F58C1E";
-      detailPanel.style.boxShadow = `0 0 28px ${zoneInfo ? zoneInfo.accentGlow : "rgba(245,140,30,0.5)"}`;
+      detailPanel.classList.add("has-selection");
+      detailPanel.style.borderColor = zoneInfo ? zoneInfo.color : "#E3A92B";
+      detailPanel.style.boxShadow = `0 0 25px ${zoneInfo ? zoneInfo.accentGlow : "rgba(245,140,30,0.4)"}`;
     }
   }
 
@@ -199,23 +199,23 @@ function initStageMap(config) {
  * ------------------------------------------------------------------------------
  */
 function initPricingSection(config) {
-  // Manejador de clics en las pastillas oficiales de precio (idénticas al flyer)
-  const pricePills = document.querySelectorAll(".price-pill-row");
-  pricePills.forEach(pill => {
-    pill.addEventListener("click", () => {
-      const zoneKey = pill.getAttribute("data-zone");
-      selectInBookingForm(zoneKey, null);
-    });
-  });
-
-  // Renderizar tarjetas detalladas complementarias
   const container = document.getElementById("pricing-cards-container");
   if (!container) return;
 
   const zonesList = Object.values(config.zones);
 
   const cardsHtml = zonesList.map(zone => {
-    const priceFormatted = Number(zone.price).toLocaleString("es-CO");
+    const isPriced = typeof zone.price === "number" && zone.price > 0;
+    const priceHtml = isPriced
+      ? `<div class="pricing-amount">$ ${Number(zone.price).toLocaleString("es-CO")} <small>COP</small></div>`
+      : `<div class="pricing-amount-tbd shimmer-text">Muy pronto</div>
+         <p class="pricing-tbd-note">[Precios oficiales por confirmar]</p>`;
+
+    const notifyBtnText = isPriced ? `Reservar ${zone.name}` : "Avísame cuando salgan";
+    const notifyActionAttr = isPriced
+      ? `data-action="book" data-zone="${zone.id}"`
+      : `data-action="notify" data-zone="${zone.name}"`;
+
     const includesHtml = zone.includes.map(inc => `<li><span class="inc-star">✦</span> ${inc}</li>`).join("");
 
     return `
@@ -228,7 +228,9 @@ function initPricingSection(config) {
         </div>
 
         <div class="pricing-card-body">
-          <div class="pricing-amount">$ ${priceFormatted} <small>COP</small></div>
+          <div class="price-box">
+            ${priceHtml}
+          </div>
           <p class="zone-capacity-text">👥 ${zone.capacity}</p>
           <p class="zone-desc-text">${zone.description}</p>
           
@@ -238,9 +240,9 @@ function initPricingSection(config) {
         </div>
 
         <div class="pricing-card-footer">
-          <button type="button" class="btn-zone-action" data-zone="${zone.id}" style="border-color: ${zone.color}">
-            <span>💬</span>
-            <span>Reservar ${zone.name}</span>
+          <button type="button" class="btn btn-zone-action" ${notifyActionAttr} style="border-color: ${zone.color}">
+            <span class="btn-icon">💬</span>
+            <span class="btn-text">${notifyBtnText}</span>
           </button>
         </div>
       </div>
@@ -251,8 +253,16 @@ function initPricingSection(config) {
 
   container.querySelectorAll(".btn-zone-action").forEach(btn => {
     btn.addEventListener("click", () => {
+      const action = btn.getAttribute("data-action");
       const zoneKey = btn.getAttribute("data-zone");
-      selectInBookingForm(zoneKey, null);
+
+      if (action === "book") {
+        selectInBookingForm(zoneKey, null);
+      } else {
+        const defaultPhone = config.whatsapp.primary.number;
+        const msg = `¡Hola! Quiero que me avisen de inmediato cuando salgan los precios oficiales para la zona ${zoneKey} de VENESTI en VIBRA (21 de noviembre).`;
+        window.open(`https://wa.me/${defaultPhone}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+      }
     });
   });
 }
@@ -270,7 +280,6 @@ function initBookingForm(config) {
 
   if (!form) return;
 
-  // Llenar selector de mesas
   if (tableSelect) {
     const defaultOpt = document.createElement("option");
     defaultOpt.value = "";
@@ -288,7 +297,6 @@ function initBookingForm(config) {
     });
   }
 
-  // Filtrar mesas según zona elegida
   if (zoneSelect && tableSelect) {
     zoneSelect.addEventListener("change", () => {
       const selectedZone = zoneSelect.value;
@@ -310,12 +318,11 @@ function initBookingForm(config) {
     });
   }
 
-  // Pasarela de pago deshabilitada
   if (gatewayNotice && config.paymentGateway) {
     gatewayNotice.innerHTML = `
       <div class="gateway-info-box">
         <div class="gateway-info-header">
-          <span>💳</span>
+          <span class="gateway-icon">💳</span>
           <strong>PAGO EN LÍNEA: ${config.paymentGateway.provider}</strong>
         </div>
         <p>${config.paymentGateway.statusText}</p>
@@ -323,7 +330,6 @@ function initBookingForm(config) {
     `;
   }
 
-  // Envío del formulario
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -498,4 +504,29 @@ function initSmoothScroll() {
       }
     });
   });
+}
+
+/**
+ * ------------------------------------------------------------------------------
+ * 8. ANIMACIONES AL HACER SCROLL
+ * ------------------------------------------------------------------------------
+ */
+function initIntersectionAnimations() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  const animTargets = document.querySelectorAll(".animate-on-scroll, .section-ornament, .pricing-card");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    animTargets.forEach(target => observer.observe(target));
+  }
 }
