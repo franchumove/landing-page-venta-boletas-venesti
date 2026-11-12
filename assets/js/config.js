@@ -3,7 +3,7 @@
  * CONFIGURACIÓN CENTRALIZADA DEL EVENTO VENESTI EN VIBRA DISCOTECA
  * ==============================================================================
  * Todos los precios, mesas, datos de contacto, enlaces y estados están centralizados
- * aquí para que el equipo o cliente pueda editarlos fácilmente en un solo lugar.
+ * aquí según el flyer oficial (venesti_vibra_feed_2).
  */
 
 const EVENT_CONFIG = {
@@ -32,8 +32,8 @@ const EVENT_CONFIG = {
       display: "315 926 4893",
       label: "Línea Reservas 2"
     },
-    // Mensaje base cuando el usuario pulsa 'Avísame cuando salgan'
-    notifyMessage: "¡Hola! Quiero que me avisen de inmediato cuando salgan los precios de las boletas y mesas para VENESTI en VIBRA (21 de noviembre de 2026).",
+    // Mensaje base cuando el usuario pulsa para consultar
+    notifyMessage: "¡Hola! Quiero consultar disponibilidad de boletas y mesas para VENESTI en VIBRA (21 de noviembre de 2026).",
     // Función que arma el mensaje de reserva formal
     createBookingMessage: function (data) {
       const parts = [
@@ -69,39 +69,39 @@ const EVENT_CONFIG = {
     venestiHandle: "@venestioficial"
   },
 
-  // --- Zonas y Precios ---
-  // Si el campo 'price' es null o 0, el sistema muestra "Muy pronto" con efecto shimmer
-  // Cuando se confirmen los precios, basta con asignar el valor numérico en COP (ej. 3500000)
+  // --- Zonas y Precios Oficiales (Actualizados según flyer venesti_vibra_feed_2) ---
   zones: {
     diamante: {
       id: "diamante",
       name: "DIAMANTE",
-      color: "#E2307C",
-      accentGlow: "rgba(226, 48, 124, 0.4)",
+      color: "#D91E74",
+      accentGlow: "rgba(217, 30, 116, 0.55)",
       badge: "FRENTE A TARIMA",
-      price: null, // [POR CONFIRMAR: ej. 4000000]
-      priceDisplay: "[POR CONFIRMAR]",
-      capacity: "[POR CONFIRMAR: Hasta 10 personas]",
-      description: "Ubicación privilegiada en las dos primeras filas justo frente a la tarima de Venesti.",
+      price: 250000,
+      priceFormatted: "$ 250.000",
+      priceDisplay: "$ 250.000 COP",
+      capacity: "[POR CONFIRMAR: Hasta 10 personas por mesa]",
+      description: "Ubicación VIP en las 8 mesas principales situadas justo frente a la tarima de Venesti.",
       includes: [
-        "Ubicación en primera línea frente al artista",
+        "Primera y segunda fila directamente frente al artista",
         "Servicio de mesero y bartender exclusivo",
         "Acceso VIP prioritario sin filas",
-        "Consumo mínimo y cortesía de la casa [POR CONFIRMAR]"
+        "Atención preferencial durante toda la noche"
       ]
     },
     oro: {
       id: "oro",
       name: "ORO",
-      color: "#F2B01E",
-      accentGlow: "rgba(242, 176, 30, 0.4)",
+      color: "#E8A21C",
+      accentGlow: "rgba(232, 162, 28, 0.55)",
       badge: "ZONA PREFERENCIAL",
-      price: null, // [POR CONFIRMAR: ej. 2800000]
-      priceDisplay: "[POR CONFIRMAR]",
-      capacity: "[POR CONFIRMAR: Hasta 8 a 10 personas]",
-      description: "Mesas en alas laterales superiores y fila central posterior, con excelente vista elevada.",
+      price: 180000,
+      priceFormatted: "$ 180.000",
+      priceDisplay: "$ 180.000 COP",
+      capacity: "[POR CONFIRMAR: Hasta 8 a 10 personas por mesa]",
+      description: "Mesas en alas laterales superiores (3 a cada lado) y fila central posterior (5 mesas) con excelente visibilidad.",
       includes: [
-        "Visión panorámica de la tarima y el show",
+        "Visión panorámica de la tarima y el escenario",
         "Mesas VIP cómodas en áreas lateral y central",
         "Atención personalizada a la mesa",
         "Acceso preferencial al venue"
@@ -110,13 +110,14 @@ const EVENT_CONFIG = {
     plata: {
       id: "plata",
       name: "PLATA",
-      color: "#1C4E9C",
-      accentGlow: "rgba(28, 78, 156, 0.45)",
+      color: "#14539E",
+      accentGlow: "rgba(20, 83, 158, 0.55)",
       badge: "ALAS LATERALES / GENERAL",
-      price: null, // [POR CONFIRMAR: ej. 150000]
-      priceDisplay: "[POR CONFIRMAR]",
+      price: 120000,
+      priceFormatted: "$ 120.000",
+      priceDisplay: "$ 120.000 COP",
       capacity: "[POR CONFIRMAR: Entrada individual / grupos]",
-      description: "Ambiente de fiesta total, acceso a barras principales y zona lounge de Vibra.",
+      description: "Grandes bloques laterales con acceso a barras principales y zona lounge de Vibra.",
       includes: [
         "Ingreso general al concierto de Venesti",
         "Acceso a barras principales del piso 5",
@@ -126,51 +127,54 @@ const EVENT_CONFIG = {
     }
   },
 
-  // --- Distribución de Mesas en la Tarima ---
+  // --- Distribución de Mesas en la Tarima (Exacta según flyer venesti_vibra_feed_2) ---
   // Estructura:
-  // DIAMANTE: 8 mesas en 2 filas de 4 (D-01 a D-08)
-  // ORO: 3 mesas a cada lado arriba (O-01 a O-06) + 5 mesas en fila abajo (O-07 a O-11)
-  // PLATA: 2 bloques azules a los lados (Plata Occidental y Plata Oriental)
+  // TARIMA: Superior centro
+  // ORO SUPERIOR IZQUIERDO: 3 mesas horizontales (O-01, O-02, O-03)
+  // ORO SUPERIOR DERECHO: 3 mesas horizontales (O-04, O-05, O-06)
+  // PLATA: 2 grandes bloques verticales a los extremos (Plata Izquierda y Plata Derecha)
+  // DIAMANTE: 8 mesas en 2 filas de 4 (D-01 a D-08) justo frente a tarima
+  // ORO INFERIOR: 5 mesas horizontales en fila (O-07 a O-11)
   tables: [
-    // Diamante - Fila 1 (frente inmediato a tarima)
-    { id: "D-01", label: "D-01", zone: "diamante", row: 1, capacity: 10, soldOut: false },
-    { id: "D-02", label: "D-02", zone: "diamante", row: 1, capacity: 10, soldOut: true }, // Ejemplo de mesa agotada configurable
-    { id: "D-03", label: "D-03", zone: "diamante", row: 1, capacity: 10, soldOut: false },
-    { id: "D-04", label: "D-04", zone: "diamante", row: 1, capacity: 10, soldOut: false },
-    // Diamante - Fila 2
-    { id: "D-05", label: "D-05", zone: "diamante", row: 2, capacity: 10, soldOut: false },
-    { id: "D-06", label: "D-06", zone: "diamante", row: 2, capacity: 10, soldOut: false },
-    { id: "D-07", label: "D-07", zone: "diamante", row: 2, capacity: 10, soldOut: false },
-    { id: "D-08", label: "D-08", zone: "diamante", row: 2, capacity: 10, soldOut: false },
+    // Oro Superior Izquierdo (3 mesas)
+    { id: "O-01", label: "Mesa Oro O-01", zone: "oro", section: "Oro Superior Izq", capacity: 8, soldOut: false },
+    { id: "O-02", label: "Mesa Oro O-02", zone: "oro", section: "Oro Superior Izq", capacity: 8, soldOut: false },
+    { id: "O-03", label: "Mesa Oro O-03", zone: "oro", section: "Oro Superior Izq", capacity: 8, soldOut: false },
 
-    // Oro - Lateral Izquierdo (3 mesas)
-    { id: "O-01", label: "O-01", zone: "oro", row: "lateral-izq", capacity: 8, soldOut: false },
-    { id: "O-02", label: "O-02", zone: "oro", row: "lateral-izq", capacity: 8, soldOut: false },
-    { id: "O-03", label: "O-03", zone: "oro", row: "lateral-izq", capacity: 8, soldOut: false },
+    // Oro Superior Derecho (3 mesas)
+    { id: "O-04", label: "Mesa Oro O-04", zone: "oro", section: "Oro Superior Der", capacity: 8, soldOut: false },
+    { id: "O-05", label: "Mesa Oro O-05", zone: "oro", section: "Oro Superior Der", capacity: 8, soldOut: true }, // Ejemplo de mesa agotada configurable
+    { id: "O-06", label: "Mesa Oro O-06", zone: "oro", section: "Oro Superior Der", capacity: 8, soldOut: false },
 
-    // Oro - Lateral Derecho (3 mesas)
-    { id: "O-04", label: "O-04", zone: "oro", row: "lateral-der", capacity: 8, soldOut: false },
-    { id: "O-05", label: "O-05", zone: "oro", row: "lateral-der", capacity: 8, soldOut: true }, // Ejemplo de mesa agotada
-    { id: "O-06", label: "O-06", zone: "oro", row: "lateral-der", capacity: 8, soldOut: false },
+    // Diamante - Fila 1 (frente inmediato a tarima, 4 mesas)
+    { id: "D-01", label: "Mesa Diamante D-01", zone: "diamante", section: "Diamante Fila 1", capacity: 10, soldOut: false },
+    { id: "D-02", label: "Mesa Diamante D-02", zone: "diamante", section: "Diamante Fila 1", capacity: 10, soldOut: true }, // Ejemplo de mesa agotada
+    { id: "D-03", label: "Mesa Diamante D-03", zone: "diamante", section: "Diamante Fila 1", capacity: 10, soldOut: false },
+    { id: "D-04", label: "Mesa Diamante D-04", zone: "diamante", section: "Diamante Fila 1", capacity: 10, soldOut: false },
 
-    // Oro - Fila Posterior Central (5 mesas)
-    { id: "O-07", label: "O-07", zone: "oro", row: "centro-post", capacity: 8, soldOut: false },
-    { id: "O-08", label: "O-08", zone: "oro", row: "centro-post", capacity: 8, soldOut: false },
-    { id: "O-09", label: "O-09", zone: "oro", row: "centro-post", capacity: 8, soldOut: false },
-    { id: "O-10", label: "O-10", zone: "oro", row: "centro-post", capacity: 8, soldOut: false },
-    { id: "O-11", label: "O-11", zone: "oro", row: "centro-post", capacity: 8, soldOut: false },
+    // Diamante - Fila 2 (4 mesas)
+    { id: "D-05", label: "Mesa Diamante D-05", zone: "diamante", section: "Diamante Fila 2", capacity: 10, soldOut: false },
+    { id: "D-06", label: "Mesa Diamante D-06", zone: "diamante", section: "Diamante Fila 2", capacity: 10, soldOut: false },
+    { id: "D-07", label: "Mesa Diamante D-07", zone: "diamante", section: "Diamante Fila 2", capacity: 10, soldOut: false },
+    { id: "D-08", label: "Mesa Diamante D-08", zone: "diamante", section: "Diamante Fila 2", capacity: 10, soldOut: false },
+
+    // Oro Inferior (5 mesas en fila)
+    { id: "O-07", label: "Mesa Oro O-07", zone: "oro", section: "Oro Fila Inferior", capacity: 8, soldOut: false },
+    { id: "O-08", label: "Mesa Oro O-08", zone: "oro", section: "Oro Fila Inferior", capacity: 8, soldOut: false },
+    { id: "O-09", label: "Mesa Oro O-09", zone: "oro", section: "Oro Fila Inferior", capacity: 8, soldOut: false },
+    { id: "O-10", label: "Mesa Oro O-10", zone: "oro", section: "Oro Fila Inferior", capacity: 8, soldOut: false },
+    { id: "O-11", label: "Mesa Oro O-11", zone: "oro", section: "Oro Fila Inferior", capacity: 8, soldOut: false },
 
     // Plata - Bloques Laterales
-    { id: "P-IZQ", label: "Plata Izquierda", zone: "plata", isBlock: true, soldOut: false },
-    { id: "P-DER", label: "Plata Derecha", zone: "plata", isBlock: true, soldOut: false }
+    { id: "P-IZQ", label: "Bloque Plata Izquierda", zone: "plata", section: "Lateral Izquierdo", isBlock: true, soldOut: false },
+    { id: "P-DER", label: "Bloque Plata Derecha", zone: "plata", section: "Lateral Derecho", isBlock: true, soldOut: false }
   ],
 
   // --- Pasarela de Pago [POR CONFIRMAR: Wompi / ePayco / Mercado Pago] ---
-  // Desactivada por defecto como se solicitó.
   paymentGateway: {
     enabled: false,
     provider: "[POR CONFIRMAR: Wompi / ePayco / Mercado Pago]",
-    statusText: "Pasarela de pagos en línea por confirmar. Actualmente todas las reservas se gestionan vía WhatsApp oficial con atención personalizada."
+    statusText: "Pasarela de pagos en línea por confirmar. Actualmente todas las reservas se gestionan vía WhatsApp oficial con confirmación inmediata."
   },
 
   // --- Preguntas Frecuentes (FAQ) ---
@@ -188,12 +192,12 @@ const EVENT_CONFIG = {
       answer: "Las mesas de zona Diamante tienen capacidad para hasta 10 personas, y las mesas de zona Oro para 8 a 10 personas [POR CONFIRMAR]. En caso de requerir cupos adicionales, se debe consultar disponibilidad directamente con los coordinadores de reservas."
     },
     {
-      question: "¿Qué incluye el valor de la mesa o boleta?",
-      answer: "El valor de cada mesa garantiza la ubicación reservada durante toda la noche, mesero dedicado y acceso preferencial VIP. [POR CONFIRMAR: El porcentaje o monto consumible en licores y bebidas de la carta oficial de Vibra se anunciará junto con los precios definitivos]."
+      question: "¿Qué incluye el valor de la boleta o mesa?",
+      answer: "Zona Diamante ($ 250.000) y Zona Oro ($ 180.000) aseguran tu mesa VIP reservada toda la noche con atención de mesero. Zona Plata ($ 120.000) brinda acceso general a la fiesta y barras principales. [POR CONFIRMAR: Consumos de barra según carta oficial de Vibra]."
     },
     {
-      question: "¿Cuáles serán los métodos de pago disponibles?",
-      answer: "Se aceptarán transferencias bancarias (Bancolombia, Davivienda), PSE, tarjetas de crédito/débito y efectivo en taquilla autorizada [POR CONFIRMAR: pasarela en línea Wompi / ePayco / Mercado Pago]."
+      question: "¿Cuáles son los métodos de pago disponibles?",
+      answer: "Se aceptan transferencias bancarias directas (Bancolombia, Davivienda), PSE, tarjetas de crédito/débito y efectivo en taquilla autorizada [POR CONFIRMAR: pasarela en línea Wompi / ePayco / Mercado Pago]."
     },
     {
       question: "¿A qué hora iniciará la presentación de VENESTI?",
